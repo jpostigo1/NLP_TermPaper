@@ -1,0 +1,3 @@
+Test
+AA,,Character NGrams|N:3,,Linear SVM,,autorun1.csv
+AA,,Character NGrams|N:3,,Nearest Neighor Driver with metric Kendall Correlation Distance,,autorun1.csv
