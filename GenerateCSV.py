@@ -1,6 +1,6 @@
 import re, os, random
 
-PATH = "../Drexel-AMT-Corpus/"
+PATH = "./Drexel-AMT-Corpus/"
 
 #CSV format
 #AA,path_to_file
@@ -23,6 +23,6 @@ for folder in os.listdir(PATH):
                 fp.write(f + '\n')
             break
         file_name = folder + ',' + PATH + file
-        print(file_name)
+        #print(file_name)
         file_arr.append(file_name)
 
