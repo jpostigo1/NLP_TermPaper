@@ -1,4 +1,4 @@
-import re, os, random, sys
+import os, random
 
 PATH = os.getcwd() + os.sep + "Drexel-AMT-Corpus" + os.sep
 
@@ -10,8 +10,6 @@ PATH = os.getcwd() + os.sep + "Drexel-AMT-Corpus" + os.sep
 fp = open("leave_one_out.csv", "w")
 
 for folder in os.listdir(PATH):
-    #print(folder)
-    #count = 0
     file_arr = []
     for file in os.listdir(PATH + os.sep + folder):
         if(not file.split('_')[1].isnumeric()):
@@ -24,6 +22,5 @@ for folder in os.listdir(PATH):
                 fp.write(f + '\n')
             break
         file_name = folder + ',' + PATH + folder + os.sep + file
-        #print(file_name)
         file_arr.append(file_name)
 
