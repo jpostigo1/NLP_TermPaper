@@ -1,0 +1,315 @@
+aa_12_4_5.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\aa\aa_12_4_5.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. q 30.0
+
+
+b_06_2.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\b\b_06_2.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. o 27.0
+
+
+bb_08_2.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\bb\bb_08_2.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. b 2.0
+
+
+c_12_1_2.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\c\c_12_1_2.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. hh 14.0
+
+
+cc_11_2.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\cc\cc_11_2.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. pp 29.0
+
+
+d_12_4.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\d\d_12_4.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. uu 39.0
+
+
+dd_01_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\dd\dd_01_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. vv 40.0
+
+
+e_06_2.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\e\e_06_2.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. e 8.0
+
+
+f_11_3.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\f\f_11_3.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. w 41.0
+
+
+ff_09_2.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\ff\ff_09_2.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. f 9.0
+
+
+g_15_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\g\g_15_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. g 11.0
+
+
+gg_01_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\gg\gg_01_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. h 13.0
+
+
+h_02_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\h\h_02_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. k 19.0
+
+
+hh_01_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\hh\hh_01_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. tt 37.0
+
+
+i_10_4.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\i\i_10_4.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. d 6.0
+
+
+ii_08_4.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\ii\ii_08_4.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. rr 33.0
+
+
+j_04_2_3.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\j\j_04_2_3.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. j 17.0
+
+
+jj_10_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\jj\jj_10_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. aa 1.0
+
+
+k_11_2.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\k\k_11_2.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. z 45.0
+
+
+kk_08_3.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\kk\kk_08_3.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. k 19.0
+
+
+l_11_4_5.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\l\l_11_4_5.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. i 15.0
+
+
+ll_02_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\ll\ll_02_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. e 8.0
+
+
+m_13_5_6.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\m\m_13_5_6.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. k 19.0
+
+
+mm_05_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\mm\mm_05_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. t 36.0
+
+
+n_05_3.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\n\n_05_3.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. n 25.0
+
+
+nn_11_4.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\nn\nn_11_4.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. b 2.0
+
+
+o_09_5.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\o\o_09_5.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. b 2.0
+
+
+p_16_3.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\p\p_16_3.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. uu 39.0
+
+
+pp_05_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\pp\pp_05_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. pp 29.0
+
+
+q_06_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\q\q_06_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. q 30.0
+
+
+qq_09_2.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\qq\qq_09_2.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. qq 31.0
+
+
+r_09_4.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\r\r_09_4.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. ii 16.0
+
+
+rr_01_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\rr\rr_01_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. rr 33.0
+
+
+s_01_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\s\s_01_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. o 27.0
+
+
+ss_08_2.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\ss\ss_08_2.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. w 41.0
+
+
+t_10_4.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\t\t_10_4.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. t 36.0
+
+
+tt_12_4.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\tt\tt_12_4.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. h 13.0
+
+
+u_05_2.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\u\u_05_2.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. q 30.0
+
+
+uu_14_4_5.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\uu\uu_14_4_5.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. o 27.0
+
+
+vv_03_2.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\vv\vv_03_2.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. ii 16.0
+
+
+w_02_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\w\w_02_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. vv 40.0
+
+
+ww_01_1.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\ww\ww_01_1.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. z 45.0
+
+
+x_07_3_4.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\x\x_07_3_4.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. k 19.0
+
+
+y_04_2.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\y\y_04_2.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. y 44.0
+
+
+z_06_2.txt C:\Users\admin\Desktop\CPE 582\PaperPreProcessing\NLP_TermPaper\Drexel-AMT-Corpus\z\z_06_2.txt
+Canonicizers: none
+EventDriver: Words 
+Analysis: Linear SVM 
+1. ll 22.0
+
+
