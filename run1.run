@@ -1,2 +1,3 @@
 Test
-aa,,Words,,Linear SVM,,leave_one_out.csv
+ngram_svm,,Character NGrams|N:3,,Linear SVM,,leave_one_out.csv
+chars_svm,,Characters,,Linear SVM,,leave_one_out.csv
