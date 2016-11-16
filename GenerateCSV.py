@@ -32,12 +32,13 @@ def TranslationTour(txt_file):
 
     translator = Translator('jpostigo',
                             '09aJ3SuBVACpmNQv6VWj7FKZaUjGL4GmUyGZxgwo/6E=')
-
+    translator2 = Translator('lwilliams',
+                             'gsNJczFz4VOPBSwyuwWZXYzWx4B0CSuZxgquCPpQggs=')
     
     #print(content)
     trans_es = translator.translate(content,'es')
     #trans_fr = translator.translate(trans_es,'fr')
-    trans_en = translator.translate(trans_es,'en')
+    trans_en = translator2.translate(trans_es,'en')
 
     print(trans_en)
     exit(4)

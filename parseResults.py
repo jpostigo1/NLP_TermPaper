@@ -12,8 +12,6 @@ EVENT_DRIVER_KEY = "event_driver_key"
 ANALYSIS_KEY = "analysis_key"
 RESULTS_KEY = "results_key"
 
-Stats = namedtuple("Stats", "TP FP TN FN")
-
 
 class Result:
     """
@@ -53,12 +51,13 @@ class Result:
 
     def toString(self):
         return "File: {}, Path: {}, Canonicizers: {}, Event Driver: {}, " \
-               "Analysis Method: {}, Classifications: {}".format(self.file_name,
-                                                                 self.full_file_path,
-                                                                 str(self.canonicizers),
-                                                                 self.event_driver,
-                                                                 self.analysis_method,
-                                                                 str(self.classifications))
+               "Analysis Method: {}, Classifications: {}"\
+            .format(self.file_name,
+                    self.full_file_path,
+                    str(self.canonicizers),
+                    self.event_driver,
+                    self.analysis_method,
+                    str(self.classifications))
 
 def getResultFilePaths(dir_to_search):
     txt_file_paths = []
