@@ -21,7 +21,7 @@ proxy_opener = urllib.request.build_opener(
 
 gs_with_proxy = goslate.Goslate(opener=proxy_opener)
 '''
-
+#try vietnamese
 def TranslationTour(txt_file):
     print(txt_file)
     fp = open(txt_file,encoding='utf-8')
@@ -40,12 +40,23 @@ def TranslationTour(txt_file):
     #trans_fr = translator.translate(trans_es,'fr')
     trans_en = translator2.translate(trans_es,'en')
 
-    print(trans_en)
+
+    sents = nltk.sent_tokenize(content)
+
+
+    new_trans = ""
+    for sent in sents:
+        trans_es = translator.translate(sent,'es')
+        #trans_fr = translator.translate(trans_es,'fr')
+        trans_en = translator.translate(trans_es,'en')
+        new_trans += trans_en
+
+    print(new_trans)
     exit(4)
 
-    #newFp = open(whereToWrite + os.sep + 'trans_obfucated.txt','w')
-    #newFp.write(output)
-    #newFp.close()
+    newFp = open(whereToWrite + os.sep + 'trans_obfucated.txt','w')
+    newFp.write(trans_en)
+    newFp.close()
 
 
 
@@ -53,6 +64,7 @@ def TranslationTour(txt_file):
 #for synonym replacement
 def Replacement(txt_file):
     print(txt_file)
+    author = txt_file.split(os.sep)[-2]
     stops = set(stopwords.words('english')+['I'])
     fp = open(txt_file,encoding='utf-8')
     content = fp.read()
@@ -83,7 +95,7 @@ def Replacement(txt_file):
     output = re.sub(r' \)', ')', output)
     output = re.sub(r" '", "'", output)
 
-    newFp = open(whereToWrite + os.sep + 'syn_obfucated.txt','w')
+    newFp = open(whereToWrite + os.sep + author +'_' + 'syn_obfuscated.txt','w')
     newFp.write(output)
     newFp.close()
     exit(2) #get rid of this call to obfuscate rest of files.
@@ -110,7 +122,7 @@ for folder in os.listdir(PATH):
             author = file_to_classify.split('_')[0].split(',')[0]
             path_to_file = os.getcwd() + os.sep + "10auths" + os.sep + author + os.sep + file_to_classify.split(os.sep)[9]
             TranslationTour(path_to_file)
-            Replacement(path_to_file)
+            #Replacement(path_to_file)
 
             new_file = ',' + file_to_classify.split(',')[1]
             file_arr.remove(file_to_classify)
