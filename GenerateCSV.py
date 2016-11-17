@@ -21,6 +21,8 @@ proxy_opener = urllib.request.build_opener(
 
 gs_with_proxy = goslate.Goslate(opener=proxy_opener)
 '''
+
+'''
 #try vietnamese
 def TranslationTour(txt_file):
     print(txt_file)
@@ -34,15 +36,15 @@ def TranslationTour(txt_file):
                             '09aJ3SuBVACpmNQv6VWj7FKZaUjGL4GmUyGZxgwo/6E=')
     translator2 = Translator('lwilliams',
                              'gsNJczFz4VOPBSwyuwWZXYzWx4B0CSuZxgquCPpQggs=')
-    
+
+
     #print(content)
-    trans_es = translator.translate(content,'es')
+    trans_es = translator2.translate(content,'es')
     #trans_fr = translator.translate(trans_es,'fr')
     trans_en = translator2.translate(trans_es,'en')
 
 
     sents = nltk.sent_tokenize(content)
-
 
     new_trans = ""
     for sent in sents:
@@ -58,7 +60,7 @@ def TranslationTour(txt_file):
     newFp.write(trans_en)
     newFp.close()
 
-
+'''
 
 
 #for synonym replacement
@@ -95,15 +97,19 @@ def Replacement(txt_file):
     output = re.sub(r' \)', ')', output)
     output = re.sub(r" '", "'", output)
 
+    output = re.sub(u"\u202d","",output)
+    output = re.sub(u"\u202c","",output)
+    output = re.sub(u"\u200e","",output)
+    output = re.sub(u"\u200f","",output)
+
+
     newFp = open(whereToWrite + os.sep + author +'_' + 'syn_obfuscated.txt','w')
     newFp.write(output)
     newFp.close()
-    exit(2) #get rid of this call to obfuscate rest of files.
+    #exit(2) #get rid of this call to obfuscate rest of files.
 
 
-
-
-PATH = os.getcwd() + os.sep + "10auths" + os.sep
+PATH = os.getcwd() + os.sep + "15auths" + os.sep
 
 
 #CSV format
@@ -120,9 +126,9 @@ for folder in os.listdir(PATH):
             file_to_classify = file_arr[index]
             #replacement(file_to_classify)
             author = file_to_classify.split('_')[0].split(',')[0]
-            path_to_file = os.getcwd() + os.sep + "10auths" + os.sep + author + os.sep + file_to_classify.split(os.sep)[9]
-            TranslationTour(path_to_file)
-            #Replacement(path_to_file)
+            path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + file_to_classify.split(os.sep)[9]
+            #TranslationTour(path_to_file)
+            Replacement(path_to_file)
 
             new_file = ',' + file_to_classify.split(',')[1]
             file_arr.remove(file_to_classify)
