@@ -1,5 +1,6 @@
 import os, random, re
 import nltk
+import time
 from nltk.corpus import wordnet
 from nltk.corpus import stopwords
 from nltk.tokenize import WhitespaceTokenizer
@@ -7,7 +8,7 @@ from nltk.tokenize import WhitespaceTokenizer
 
 punctuation = ",;.!?"
 
-from microsofttranslator import Translator
+# from microsofttranslator import Translator
 
 
 '''
@@ -65,7 +66,7 @@ def TranslationTour(txt_file):
 
 #for synonym replacement
 def Replacement(txt_file):
-    print(txt_file)
+    #print(txt_file)
     author = txt_file.split(os.sep)[-2]
     stops = set(stopwords.words('english')+['I'])
     fp = open(txt_file,encoding='utf-8')
@@ -109,14 +110,33 @@ def Replacement(txt_file):
     #exit(2) #get rid of this call to obfuscate rest of files.
 
 
-PATH = os.getcwd() + os.sep + "15auths" + os.sep
+def genCSVObfuscated(dataDir):
+    # Generates CSV files for .run including the obfuscated versions as the unknown styles.
 
+    output_filename = "with_obfuscated_" + str(round(time.time())) + ".csv"
+    fp = open(output_filename, "w")
+
+    for folder in os.listdir(dataDir):
+        file_arr = []
+        for file in os.listdir(dataDir + os.sep + folder):
+            author = file.split('_')[0]
+            path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + \
+                           file.split(os.sep)[-1]
+            if file.split('_')[1].isnumeric():
+                fp.write(author + "," + path_to_file + "\n")
+            elif "syn_obfuscated" in file:
+                fp.write("," + path_to_file + "\n")
+    fp.close()
+
+
+PATH = os.getcwd() + os.sep + "15auths" + os.sep
 
 #CSV format
     #AA,path_to_file
     #,path_to_file (to classify)
 
-fp = open("leave_one_out.csv", "w")
+output_filename = "leave_one_out_" + str(round(time.time())) + ".csv"
+fp = open(output_filename, "w")
 
 for folder in os.listdir(PATH):
     file_arr = []
@@ -126,7 +146,7 @@ for folder in os.listdir(PATH):
             file_to_classify = file_arr[index]
             #replacement(file_to_classify)
             author = file_to_classify.split('_')[0].split(',')[0]
-            path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + file_to_classify.split(os.sep)[9]
+            path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + file_to_classify.split(os.sep)[-1]
             #TranslationTour(path_to_file)
             Replacement(path_to_file)
 
@@ -138,3 +158,7 @@ for folder in os.listdir(PATH):
             break
         file_name = folder + ',' + PATH + folder + os.sep + file
         file_arr.append(file_name)
+
+
+
+genCSVObfuscated(PATH)
