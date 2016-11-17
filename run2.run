@@ -1,0 +1,4 @@
+ObfuscatedTest
+2gram_svm,,Character NGrams|N:2,,Linear SVM,,with_obfuscated_1479417711.csv
+lex_svm,,Lexical Frequencies,,Linear SVM,,with_obfuscated_1479417711.csv
+sortedc_2gram,,Sorted Character NGram|N:2,,Linear SVM,,with_obfuscated_1479417711.csv
