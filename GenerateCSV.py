@@ -1,6 +1,5 @@
 import os, random, re
 import nltk
-import time
 from nltk.corpus import wordnet
 from nltk.corpus import stopwords
 from nltk.tokenize import WhitespaceTokenizer
@@ -113,7 +112,7 @@ def Replacement(txt_file):
 def genCSVObfuscated(dataDir):
     # Generates CSV files for .run including the obfuscated versions as the unknown styles.
 
-    output_filename = "with_obfuscated_" + str(round(time.time())) + ".csv"
+    output_filename = "with_obfuscated.csv"
     fp = open(output_filename, "w")
 
     for folder in os.listdir(dataDir):
@@ -135,7 +134,7 @@ PATH = os.getcwd() + os.sep + "15auths" + os.sep
     #AA,path_to_file
     #,path_to_file (to classify)
 
-output_filename = "leave_one_out_" + str(round(time.time())) + ".csv"
+output_filename = "leave_one_out.csv"
 fp = open(output_filename, "w")
 
 for folder in os.listdir(PATH):
