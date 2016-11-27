@@ -4,6 +4,7 @@ from nltk.corpus import wordnet
 from nltk.corpus import stopwords
 from nltk.tokenize import WhitespaceTokenizer
 
+from nltk.tag import StanfordPOSTagger
 
 punctuation = ",;.!?"
 
@@ -63,6 +64,55 @@ def TranslationTour(txt_file):
 '''
 
 
+def Sentence_Split(txt_file):
+    print(txt_file)
+    author = txt_file.split(os.sep)[-2]
+    stops = set(stopwords.words('english')+['I'])
+    fp = open(txt_file,encoding='utf-8')
+    content = fp.read()
+    fp.close()
+
+    whereToWrite = os.sep.join(txt_file.split(os.sep)[0:-1])
+
+    token = nltk.sent_tokenize(content)
+    new_content = ""
+    for sent in token:
+        new_sent = ""
+        word_token = nltk.word_tokenize(sent)
+        pos = nltk.pos_tag(word_token)
+        for word, speech in pos:
+            if speech == 'CC':
+                new_sent = new_sent[:-1]
+                new_sent += '. '
+            else:
+                new_sent += word + " "
+        new_content += new_sent
+
+    output = new_content
+
+    output = re.sub(r" \,\.", ".", output)
+    output = re.sub(r" \.", ".", output)
+    output = re.sub(r" \,", ",", output)
+    output = re.sub(r" \;", ";", output)
+    output = re.sub(r" \:", ":", output)
+    output = re.sub(r" ''",'"', output)
+    output = re.sub(r'`` ', '"' , output)
+    output = re.sub(r'\( ', '(', output)
+    output = re.sub(r' \)', ')', output)
+    output = re.sub(r" '", "'", output)
+
+    output = re.sub(u"\u202d","",output)
+    output = re.sub(u"\u202c","",output)
+    output = re.sub(u"\u200e","",output)
+    output = re.sub(u"\u200f","",output)
+    output = re.sub(u"\uf0b0","",output)
+
+    #print(output)
+
+    newFp = open(whereToWrite + os.sep + author +'_' + 'sent_obfuscated.txt','w')
+    newFp.write(output)
+    newFp.close()
+
 #for synonym replacement
 def Replacement(txt_file):
     #print(txt_file)
@@ -73,6 +123,9 @@ def Replacement(txt_file):
     fp.close()
 
     whereToWrite = os.sep.join(txt_file.split(os.sep)[0:-1])
+
+    #st = StanfordPOSTagger('english-bidirectional-distsim.tagger')
+    #print(st.tag(content.split()))
 
     token = nltk.word_tokenize(content)
     pos = nltk.pos_tag(token)
@@ -90,7 +143,7 @@ def Replacement(txt_file):
                 output += word
             else:
                 output += ' ' + word
-
+    exit(2)
     output = re.sub(r" ''",'"', output)
     output = re.sub(r'`` ', '"' , output)
     output = re.sub(r'\( ', '(', output)
@@ -147,8 +200,8 @@ for folder in os.listdir(PATH):
             author = file_to_classify.split('_')[0].split(',')[0]
             path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + file_to_classify.split(os.sep)[-1]
             #TranslationTour(path_to_file)
-            Replacement(path_to_file)
-
+            #Replacement(path_to_file)
+            Sentence_Split(path_to_file)
             new_file = ',' + file_to_classify.split(',')[1]
             file_arr.remove(file_to_classify)
             fp.write(new_file + '\n')
