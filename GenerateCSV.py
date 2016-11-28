@@ -4,8 +4,7 @@ from nltk.corpus import wordnet
 from nltk.corpus import stopwords
 from nltk.tokenize import WhitespaceTokenizer
 
-from nltk.tag import StanfordPOSTagger
-
+from nltk.tag.stanford import StanfordPOSTagger
 punctuation = ",;.!?"
 
 # from microsofttranslator import Translator
@@ -63,11 +62,49 @@ def TranslationTour(txt_file):
 
 '''
 
-#for splitting sentences into multiple sentences
-def Sentence_Split(txt_file):
-    print(txt_file)
+def Remove_Stopwords(txt_file):
     author = txt_file.split(os.sep)[-2]
     stops = set(stopwords.words('english')+['I'])
+    fp = open(txt_file,encoding='utf-8')
+    content = fp.read()
+    fp.close()
+
+    whereToWrite = os.sep.join(txt_file.split(os.sep)[0:-1])
+
+    token = nltk.word_tokenize(content)
+
+    output = ' '.join([word for word in token if word not in stops])
+
+    output = re.sub(r" \,\.", ".", output)
+    output = re.sub(r" \.", ".", output)
+    output = re.sub(r" \?", "?", output)
+    output = re.sub(r" \!", "!", output)
+    output = re.sub(r" \,", ",", output)
+    output = re.sub(r" \;", ";", output)
+    output = re.sub(r" \:", ":", output)
+    output = re.sub(r" ''",'"', output)
+    output = re.sub(r'`` ', '"' , output)
+    output = re.sub(r'\( ', '(', output)
+    output = re.sub(r' \)', ')', output)
+    output = re.sub(r" '", "'", output)
+
+    output = re.sub(u"\u202d","",output)
+    output = re.sub(u"\u202c","",output)
+    output = re.sub(u"\u200e","",output)
+    output = re.sub(u"\u200f","",output)
+    output = re.sub(u"\uf0b0","",output)
+
+    #exit(2) #remove this to make files
+
+    newFp = open(whereToWrite + os.sep + author +'_' + 'stop_obfuscated.txt','w')
+    newFp.write(output)
+    newFp.close()
+
+
+
+#for splitting sentences into multiple sentences
+def Sentence_Split(txt_file):
+    author = txt_file.split(os.sep)[-2]
     fp = open(txt_file,encoding='utf-8')
     content = fp.read()
     fp.close()
@@ -107,8 +144,6 @@ def Sentence_Split(txt_file):
     output = re.sub(u"\u200f","",output)
     output = re.sub(u"\uf0b0","",output)
 
-    #print(output)
-
     newFp = open(whereToWrite + os.sep + author +'_' + 'sent_obfuscated.txt','w')
     newFp.write(output)
     newFp.close()
@@ -117,15 +152,17 @@ def Sentence_Split(txt_file):
 def Replacement(txt_file):
     #print(txt_file)
     author = txt_file.split(os.sep)[-2]
-    stops = set(stopwords.words('english')+['I'])
     fp = open(txt_file,encoding='utf-8')
     content = fp.read()
     fp.close()
 
     whereToWrite = os.sep.join(txt_file.split(os.sep)[0:-1])
 
-    #st = StanfordPOSTagger('english-bidirectional-distsim.tagger')
+    #st = StanfordPOSTagger(
+    #    'postagger/models/english-bidirectional-distsim.tagger',
+    #    'postagger/stanford-postagger.jar')
     #print(st.tag(content.split()))
+    #exit(2)
 
     token = nltk.word_tokenize(content)
     pos = nltk.pos_tag(token)
@@ -143,7 +180,7 @@ def Replacement(txt_file):
                 output += word
             else:
                 output += ' ' + word
-    exit(2)
+
     output = re.sub(r" ''",'"', output)
     output = re.sub(r'`` ', '"' , output)
     output = re.sub(r'\( ', '(', output)
@@ -160,12 +197,10 @@ def Replacement(txt_file):
     newFp = open(whereToWrite + os.sep + author +'_' + 'syn_obfuscated.txt','w')
     newFp.write(output)
     newFp.close()
-    #exit(2) #get rid of this call to obfuscate rest of files.
 
 
 def genCSVObfuscated(dataDir):
     # Generates CSV files for .run including the obfuscated versions as the unknown styles.
-
     output_filename = "with_obfuscated.csv"
     fp = open(output_filename, "w")
 
@@ -183,7 +218,6 @@ def genCSVObfuscated(dataDir):
 
 def genCSVSent_Obfuscated(dataDir):
     # Generates CSV files for .run including the obfuscated versions as the unknown styles.
-
     output_filename = "sent_obfuscated.csv"
     fp = open(output_filename, "w")
 
@@ -196,6 +230,24 @@ def genCSVSent_Obfuscated(dataDir):
             if file.split('_')[1].isnumeric():
                 fp.write(author + "," + path_to_file + "\n")
             elif "sent_obfuscated" in file:
+                fp.write("," + path_to_file + "\n")
+    fp.close()
+
+
+def genCSVStop_Obfuscated(dataDir):
+    # Generates CSV files for .run including the obfuscated versions as the unknown styles.
+    output_filename = "stop_obfuscated.csv"
+    fp = open(output_filename, "w")
+
+    for folder in os.listdir(dataDir):
+        file_arr = []
+        for file in os.listdir(dataDir + os.sep + folder):
+            author = file.split('_')[0]
+            path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + \
+                           file.split(os.sep)[-1]
+            if file.split('_')[1].isnumeric():
+                fp.write(author + "," + path_to_file + "\n")
+            elif "stop_obfuscated" in file:
                 fp.write("," + path_to_file + "\n")
     fp.close()
 
@@ -218,7 +270,8 @@ for folder in os.listdir(PATH):
             path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + file_to_classify.split(os.sep)[-1]
             #TranslationTour(path_to_file)
             #Replacement(path_to_file)
-            Sentence_Split(path_to_file)
+            #Sentence_Split(path_to_file)
+            Remove_Stopwords(path_to_file)
             new_file = ',' + file_to_classify.split(',')[1]
             file_arr.remove(file_to_classify)
             fp.write(new_file + '\n')
@@ -229,6 +282,6 @@ for folder in os.listdir(PATH):
         file_arr.append(file_name)
 
 
-
-genCSVObfuscated(PATH)
-genCSVSent_Obfuscated(PATH)
+#genCSVObfuscated(PATH)
+#genCSVSent_Obfuscated(PATH)
+genCSVStop_Obfuscated(PATH)
