@@ -94,9 +94,7 @@ def Remove_Stopwords(txt_file):
     output = re.sub(u"\u200f","",output)
     output = re.sub(u"\uf0b0","",output)
 
-    print(output)
-
-    exit(2) #remove this to make files
+    #exit(2) #remove this to make files
 
     newFp = open(whereToWrite + os.sep + author +'_' + 'stop_obfuscated.txt','w')
     newFp.write(output)
@@ -235,6 +233,24 @@ def genCSVSent_Obfuscated(dataDir):
                 fp.write("," + path_to_file + "\n")
     fp.close()
 
+
+def genCSVStop_Obfuscated(dataDir):
+    # Generates CSV files for .run including the obfuscated versions as the unknown styles.
+    output_filename = "stop_obfuscated.csv"
+    fp = open(output_filename, "w")
+
+    for folder in os.listdir(dataDir):
+        file_arr = []
+        for file in os.listdir(dataDir + os.sep + folder):
+            author = file.split('_')[0]
+            path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + \
+                           file.split(os.sep)[-1]
+            if file.split('_')[1].isnumeric():
+                fp.write(author + "," + path_to_file + "\n")
+            elif "stop_obfuscated" in file:
+                fp.write("," + path_to_file + "\n")
+    fp.close()
+
 PATH = os.getcwd() + os.sep + "15auths" + os.sep
 '''
 CSV format:
@@ -268,3 +284,4 @@ for folder in os.listdir(PATH):
 
 #genCSVObfuscated(PATH)
 #genCSVSent_Obfuscated(PATH)
+genCSVStop_Obfuscated(PATH)
