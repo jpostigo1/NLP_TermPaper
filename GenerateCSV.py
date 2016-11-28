@@ -63,7 +63,7 @@ def TranslationTour(txt_file):
 
 '''
 
-
+#for splitting sentences into multiple sentences
 def Sentence_Split(txt_file):
     print(txt_file)
     author = txt_file.split(os.sep)[-2]
@@ -154,6 +154,7 @@ def Replacement(txt_file):
     output = re.sub(u"\u202c","",output)
     output = re.sub(u"\u200e","",output)
     output = re.sub(u"\u200f","",output)
+    output = re.sub(u"\uf0b0","",output)
 
 
     newFp = open(whereToWrite + os.sep + author +'_' + 'syn_obfuscated.txt','w')
@@ -180,13 +181,30 @@ def genCSVObfuscated(dataDir):
                 fp.write("," + path_to_file + "\n")
     fp.close()
 
+def genCSVSent_Obfuscated(dataDir):
+    # Generates CSV files for .run including the obfuscated versions as the unknown styles.
+
+    output_filename = "sent_obfuscated.csv"
+    fp = open(output_filename, "w")
+
+    for folder in os.listdir(dataDir):
+        file_arr = []
+        for file in os.listdir(dataDir + os.sep + folder):
+            author = file.split('_')[0]
+            path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + \
+                           file.split(os.sep)[-1]
+            if file.split('_')[1].isnumeric():
+                fp.write(author + "," + path_to_file + "\n")
+            elif "sent_obfuscated" in file:
+                fp.write("," + path_to_file + "\n")
+    fp.close()
 
 PATH = os.getcwd() + os.sep + "15auths" + os.sep
-
-#CSV format
-    #AA,path_to_file
-    #,path_to_file (to classify)
-
+'''
+CSV format:
+    AA,path_to_file
+    ,path_to_file (to classify)
+'''
 output_filename = "leave_one_out.csv"
 fp = open(output_filename, "w")
 
@@ -196,7 +214,6 @@ for folder in os.listdir(PATH):
         if(not file.split('_')[1].isnumeric()):
             index = random.randint(0, len(file_arr) - 1)
             file_to_classify = file_arr[index]
-            #replacement(file_to_classify)
             author = file_to_classify.split('_')[0].split(',')[0]
             path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + file_to_classify.split(os.sep)[-1]
             #TranslationTour(path_to_file)
@@ -214,3 +231,4 @@ for folder in os.listdir(PATH):
 
 
 genCSVObfuscated(PATH)
+genCSVSent_Obfuscated(PATH)
