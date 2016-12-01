@@ -1,4 +1,4 @@
-import os, random, re
+import os, random, re, math
 import nltk
 from nltk.corpus import wordnet
 from nltk.corpus import stopwords
@@ -100,7 +100,62 @@ def Remove_Stopwords(txt_file):
     newFp.write(output)
     newFp.close()
 
+#for combining sentences
+def Sentence_Join(txt_file):
+    author = txt_file.split(os.sep)[-2]
+    fp = open(txt_file,encoding='utf-8')
+    content = fp.read()
+    fp.close()
 
+    whereToWrite = os.sep.join(txt_file.split(os.sep)[0:-1])
+
+    token = nltk.sent_tokenize(content)
+    length = len(token)
+    sents_to_combine = math.floor(length/3)
+    where_to_combine = math.floor(length/sents_to_combine)
+
+    new_content = ""
+    count = 0
+    toLower = False
+    for sent in token:
+        new_sent = ""
+        word_token = nltk.word_tokenize(sent)
+        pos = nltk.pos_tag(word_token)
+        for word, speech in pos:
+            if speech == "." and count % where_to_combine == 0:
+                new_sent += "and "
+                toLower = True
+            else:
+                if(toLower):
+                    new_sent += word.lower() + " "
+                else:
+                    new_sent += word + " "
+                toLower = False
+        count += 1
+
+        new_content += new_sent
+    output = new_content
+
+    output = re.sub(r" \,\.", ".", output)
+    output = re.sub(r" \.", ".", output)
+    output = re.sub(r" \,", ",", output)
+    output = re.sub(r" \;", ";", output)
+    output = re.sub(r" \:", ":", output)
+    output = re.sub(r" ''",'"', output)
+    output = re.sub(r'`` ', '"' , output)
+    output = re.sub(r'\( ', '(', output)
+    output = re.sub(r' \)', ')', output)
+    output = re.sub(r" '", "'", output)
+
+    output = re.sub(u"\u202d","",output)
+    output = re.sub(u"\u202c","",output)
+    output = re.sub(u"\u200e","",output)
+    output = re.sub(u"\u200f","",output)
+    output = re.sub(u"\uf0b0","",output)
+
+    newFp = open(whereToWrite + os.sep + author +'_' + 'combine_obfuscated.txt','w')
+    newFp.write(output)
+    newFp.close()
 
 #for splitting sentences into multiple sentences
 def Sentence_Split(txt_file):
@@ -114,15 +169,18 @@ def Sentence_Split(txt_file):
     token = nltk.sent_tokenize(content)
     new_content = ""
     for sent in token:
+        count = 0
         new_sent = ""
         word_token = nltk.word_tokenize(sent)
         pos = nltk.pos_tag(word_token)
         for word, speech in pos:
-            if speech == 'CC':
+            if speech == 'CC' and len(sent) - count > 4\
+                    and len(sent) - count < 4:
                 new_sent = new_sent[:-1]
                 new_sent += '. '
             else:
                 new_sent += word + " "
+            count += 1
         new_content += new_sent
 
     output = new_content
@@ -222,7 +280,6 @@ def genCSVSent_Obfuscated(dataDir):
     fp = open(output_filename, "w")
 
     for folder in os.listdir(dataDir):
-        file_arr = []
         for file in os.listdir(dataDir + os.sep + folder):
             author = file.split('_')[0]
             path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + \
@@ -230,6 +287,20 @@ def genCSVSent_Obfuscated(dataDir):
             if file.split('_')[1].isnumeric():
                 fp.write(author + "," + path_to_file + "\n")
             elif "sent_obfuscated" in file:
+                fp.write("," + path_to_file + "\n")
+    fp.close()
+
+    output_filename = "combine_obfuscated.csv"
+    fp = open(output_filename, "w")
+
+    for folder in os.listdir(dataDir):
+        for file in os.listdir(dataDir + os.sep + folder):
+            author = file.split('_')[0]
+            path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + \
+                           file.split(os.sep)[-1]
+            if file.split('_')[1].isnumeric():
+                fp.write(author + "," + path_to_file + "\n")
+            elif "combine_obfuscated" in file:
                 fp.write("," + path_to_file + "\n")
     fp.close()
 
@@ -269,9 +340,10 @@ for folder in os.listdir(PATH):
             author = file_to_classify.split('_')[0].split(',')[0]
             path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + file_to_classify.split(os.sep)[-1]
             #TranslationTour(path_to_file)
-            #Replacement(path_to_file)
-            #Sentence_Split(path_to_file)
+            Replacement(path_to_file)
+            Sentence_Split(path_to_file)
             Remove_Stopwords(path_to_file)
+            Sentence_Join(path_to_file)
             new_file = ',' + file_to_classify.split(',')[1]
             file_arr.remove(file_to_classify)
             fp.write(new_file + '\n')
@@ -282,6 +354,6 @@ for folder in os.listdir(PATH):
         file_arr.append(file_name)
 
 
-#genCSVObfuscated(PATH)
-#genCSVSent_Obfuscated(PATH)
+genCSVObfuscated(PATH)
+genCSVSent_Obfuscated(PATH)
 genCSVStop_Obfuscated(PATH)

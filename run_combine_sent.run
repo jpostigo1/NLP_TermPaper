@@ -1,0 +1,4 @@
+SentenceCombineObfuscatedTest 
+2gram_svm,,Character NGrams|N:2,,Linear SVM,,combine_obfuscated.csv
+lex_svm,,Lexical Frequencies,,Linear SVM,,combine_obfuscated.csv
+sortedc_2gram,,Sorted Character NGram|N:2,,Linear SVM,,combine_obfuscated.csv
