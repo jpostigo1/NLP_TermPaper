@@ -169,15 +169,18 @@ def Sentence_Split(txt_file):
     token = nltk.sent_tokenize(content)
     new_content = ""
     for sent in token:
+        count = 0
         new_sent = ""
         word_token = nltk.word_tokenize(sent)
         pos = nltk.pos_tag(word_token)
         for word, speech in pos:
-            if speech == 'CC':
+            if speech == 'CC' and len(sent) - count > 4\
+                    and len(sent) - count < 4:
                 new_sent = new_sent[:-1]
                 new_sent += '. '
             else:
                 new_sent += word + " "
+            count += 1
         new_content += new_sent
 
     output = new_content
@@ -337,9 +340,9 @@ for folder in os.listdir(PATH):
             author = file_to_classify.split('_')[0].split(',')[0]
             path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + file_to_classify.split(os.sep)[-1]
             #TranslationTour(path_to_file)
-            #Replacement(path_to_file)
-            #Sentence_Split(path_to_file)
-            #Remove_Stopwords(path_to_file)
+            Replacement(path_to_file)
+            Sentence_Split(path_to_file)
+            Remove_Stopwords(path_to_file)
             Sentence_Join(path_to_file)
             new_file = ',' + file_to_classify.split(',')[1]
             file_arr.remove(file_to_classify)
