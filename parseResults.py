@@ -112,9 +112,13 @@ def main():
         for result in all_files_results[filename]:
             print("{}:\n{}\n".format(filename, result.toString()))
     """
-
+    results_array = []
     for filename, results in all_files_results.items():
-        print("Accuracy for {}:\n{}".format(filename, getExperimentAccuracy(results)))
+        results_array.append((filename, getExperimentAccuracy(results)))
+    results_array = sorted(results_array, key=lambda x: x[0])
+
+    for filename,accuracy in results_array:
+        print("Accuracy for {}:\n{}".format(filename, accuracy))
 
 
 if  __name__ =='__main__':
