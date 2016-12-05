@@ -3,7 +3,6 @@ import nltk
 from nltk.corpus import wordnet
 from nltk.corpus import stopwords
 from nltk.tokenize import WhitespaceTokenizer
-
 from nltk.tag.stanford import StanfordPOSTagger
 punctuation = ",;.!?"
 
@@ -61,6 +60,66 @@ def TranslationTour(txt_file):
     newFp.close()
 
 '''
+
+def Replace_Stopwords(txt_file):
+    author = txt_file.split(os.sep)[-2]
+    operators = set('and', 'or', 'not', 'a', 'was', 'i', 'at',
+                     'or', 'an', 'it', 'who','its', 'am', 'as','he',
+                     'in', 'be')
+
+    stops = set(stopwords.words('english')) - operators
+    fp = open(txt_file,encoding='utf-8')
+    content = fp.read()
+    fp.close()
+
+    whereToWrite = os.sep.join(txt_file.split(os.sep)[0:-1])
+
+    token = nltk.word_tokenize(content)
+    pos = nltk.pos_tag(token)
+    output = ""
+
+    for word, speech in pos:
+        if word in stops:
+            syn = wordnet.synsets(word)
+
+            if syn:
+                to_replace = word
+                for l in syn[0].lemmas():
+                    if word != l.name():
+                        print(word, l.name())
+                        to_replace = l.name()
+                        break
+                output += to_replace + " "
+            else:
+                output += word + " "
+        else:
+            output += word + " "
+    exit(3)
+    output = re.sub(r" \,\.", ".", output)
+    output = re.sub(r" \.", ".", output)
+    output = re.sub(r" \?", "?", output)
+    output = re.sub(r" \!", "!", output)
+    output = re.sub(r" \,", ",", output)
+    output = re.sub(r" \;", ";", output)
+    output = re.sub(r" \:", ":", output)
+    output = re.sub(r" ''",'"', output)
+    output = re.sub(r'`` ', '"' , output)
+    output = re.sub(r'\( ', '(', output)
+    output = re.sub(r' \)', ')', output)
+    output = re.sub(r" '", "'", output)
+
+    output = re.sub(u"\u202d","",output)
+    output = re.sub(u"\u202c","",output)
+    output = re.sub(u"\u200e","",output)
+    output = re.sub(u"\u200f","",output)
+    output = re.sub(u"\uf0b0","",output)
+
+    print(output)
+    exit(2) #remove this to make files
+
+    newFp = open(whereToWrite + os.sep + author +'_' + 'replacestop_obfuscated.txt','w')
+    newFp.write(output)
+    newFp.close()
 
 def Remove_Stopwords(txt_file):
     author = txt_file.split(os.sep)[-2]
@@ -216,12 +275,6 @@ def Replacement(txt_file):
 
     whereToWrite = os.sep.join(txt_file.split(os.sep)[0:-1])
 
-    #st = StanfordPOSTagger(
-    #    'postagger/models/english-bidirectional-distsim.tagger',
-    #    'postagger/stanford-postagger.jar')
-    #print(st.tag(content.split()))
-    #exit(2)
-
     token = nltk.word_tokenize(content)
     pos = nltk.pos_tag(token)
 
@@ -311,7 +364,6 @@ def genCSVStop_Obfuscated(dataDir):
     fp = open(output_filename, "w")
 
     for folder in os.listdir(dataDir):
-        file_arr = []
         for file in os.listdir(dataDir + os.sep + folder):
             author = file.split('_')[0]
             path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + \
@@ -322,6 +374,19 @@ def genCSVStop_Obfuscated(dataDir):
                 fp.write("," + path_to_file + "\n")
     fp.close()
 
+    output_filename = "replacestop_obfuscated.csv"
+    fp = open(output_filename, "w")
+
+    for folder in os.listdir(dataDir):
+        for file in os.listdir(dataDir + os.sep + folder):
+            author = file.split('_')[0]
+            path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + \
+                           file.split(os.sep)[-1]
+            if file.split('_')[1].isnumeric():
+                fp.write(author + "," + path_to_file + "\n")
+            elif "replacestop_obfuscated" in file:
+                fp.write("," + path_to_file + "\n")
+    fp.close()
 
 def main():
     PATH = os.getcwd() + os.sep + "15auths" + os.sep
