@@ -2,64 +2,8 @@ import os, random, re, math
 import nltk
 from nltk.corpus import wordnet
 from nltk.corpus import stopwords
-from nltk.tokenize import WhitespaceTokenizer
-from nltk.tag.stanford import StanfordPOSTagger
+
 punctuation = ",;.!?"
-
-# from microsofttranslator import Translator
-
-
-'''
-from translate import translator
-translator('en', 'es', 'Hello World!')
-
-proxy_handler = urllib.request.ProxyHandler({"http" : "http://translate.google.com"})
-proxy_opener = urllib.request.build_opener(
-    urllib.request.HTTPHandler(proxy_handler),
-    urllib.request.HTTPSHandler(proxy_handler))
-
-gs_with_proxy = goslate.Goslate(opener=proxy_opener)
-'''
-
-'''
-#try vietnamese
-def TranslationTour(txt_file):
-    print(txt_file)
-    fp = open(txt_file,encoding='utf-8')
-    content = fp.read()
-    fp.close()
-
-    whereToWrite = os.sep.join(txt_file.split(os.sep)[0:-1])
-
-    translator = Translator('jpostigo',
-                            '09aJ3SuBVACpmNQv6VWj7FKZaUjGL4GmUyGZxgwo/6E=')
-    translator2 = Translator('lwilliams',
-                             'gsNJczFz4VOPBSwyuwWZXYzWx4B0CSuZxgquCPpQggs=')
-
-
-    #print(content)
-    trans_es = translator2.translate(content,'es')
-    #trans_fr = translator.translate(trans_es,'fr')
-    trans_en = translator2.translate(trans_es,'en')
-
-
-    sents = nltk.sent_tokenize(content)
-
-    new_trans = ""
-    for sent in sents:
-        trans_es = translator.translate(sent,'es')
-        #trans_fr = translator.translate(trans_es,'fr')
-        trans_en = translator.translate(trans_es,'en')
-        new_trans += trans_en
-
-    print(new_trans)
-    exit(4)
-
-    newFp = open(whereToWrite + os.sep + 'trans_obfucated.txt','w')
-    newFp.write(trans_en)
-    newFp.close()
-
-'''
 
 def Replace_Stopwords(txt_file):
     author = txt_file.split(os.sep)[-2]
@@ -94,7 +38,6 @@ def Replace_Stopwords(txt_file):
                 output += word + " "
         else:
             output += word + " "
-    exit(3)
     output = re.sub(r" \,\.", ".", output)
     output = re.sub(r" \.", ".", output)
     output = re.sub(r" \?", "?", output)
@@ -113,9 +56,6 @@ def Replace_Stopwords(txt_file):
     output = re.sub(u"\u200e","",output)
     output = re.sub(u"\u200f","",output)
     output = re.sub(u"\uf0b0","",output)
-
-    print(output)
-    exit(2) #remove this to make files
 
     newFp = open(whereToWrite + os.sep + author +'_' + 'replacestop_obfuscated.txt','w')
     newFp.write(output)
@@ -411,6 +351,7 @@ def main():
                 Sentence_Split(path_to_file)
                 Remove_Stopwords(path_to_file)
                 Sentence_Join(path_to_file)
+                Replace_Stopwords(path_to_file)
                 new_file = ',' + file_to_classify.split(',')[1]
                 file_arr.remove(file_to_classify)
                 fp.write(new_file + '\n')
