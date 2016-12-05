@@ -111,8 +111,8 @@ def Sentence_Join(txt_file):
 
     token = nltk.sent_tokenize(content)
     length = len(token)
-    sents_to_combine = math.floor(length/3)
-    where_to_combine = math.floor(length/sents_to_combine)
+    sents_to_combine = math.ceil(length/3)
+    where_to_combine = math.ceil(length/sents_to_combine)
 
     new_content = ""
     count = 0
@@ -322,38 +322,43 @@ def genCSVStop_Obfuscated(dataDir):
                 fp.write("," + path_to_file + "\n")
     fp.close()
 
-PATH = os.getcwd() + os.sep + "15auths" + os.sep
-'''
-CSV format:
-    AA,path_to_file
-    ,path_to_file (to classify)
-'''
-output_filename = "leave_one_out.csv"
-fp = open(output_filename, "w")
 
-for folder in os.listdir(PATH):
-    file_arr = []
-    for file in os.listdir(PATH + os.sep + folder):
-        if(not file.split('_')[1].isnumeric()):
-            index = random.randint(0, len(file_arr) - 1)
-            file_to_classify = file_arr[index]
-            author = file_to_classify.split('_')[0].split(',')[0]
-            path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + file_to_classify.split(os.sep)[-1]
-            #TranslationTour(path_to_file)
-            Replacement(path_to_file)
-            Sentence_Split(path_to_file)
-            Remove_Stopwords(path_to_file)
-            Sentence_Join(path_to_file)
-            new_file = ',' + file_to_classify.split(',')[1]
-            file_arr.remove(file_to_classify)
-            fp.write(new_file + '\n')
-            for f in file_arr:
-                fp.write(f + '\n')
-            break
-        file_name = folder + ',' + PATH + folder + os.sep + file
-        file_arr.append(file_name)
+def main():
+    PATH = os.getcwd() + os.sep + "15auths" + os.sep
+    '''
+    CSV format:
+        AA,path_to_file
+        ,path_to_file (to classify)
+    '''
+    output_filename = "leave_one_out.csv"
+    fp = open(output_filename, "w")
+
+    for folder in os.listdir(PATH):
+        file_arr = []
+        for file in os.listdir(PATH + os.sep + folder):
+            if(not file.split('_')[1].isnumeric()):
+                index = random.randint(0, len(file_arr) - 1)
+                file_to_classify = file_arr[index]
+                author = file_to_classify.split('_')[0].split(',')[0]
+                path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + file_to_classify.split(os.sep)[-1]
+                #TranslationTour(path_to_file)
+                Replacement(path_to_file)
+                Sentence_Split(path_to_file)
+                Remove_Stopwords(path_to_file)
+                Sentence_Join(path_to_file)
+                new_file = ',' + file_to_classify.split(',')[1]
+                file_arr.remove(file_to_classify)
+                fp.write(new_file + '\n')
+                for f in file_arr:
+                    fp.write(f + '\n')
+                break
+            file_name = folder + ',' + PATH + folder + os.sep + file
+            file_arr.append(file_name)
 
 
-genCSVObfuscated(PATH)
-genCSVSent_Obfuscated(PATH)
-genCSVStop_Obfuscated(PATH)
+    genCSVObfuscated(PATH)
+    genCSVSent_Obfuscated(PATH)
+    genCSVStop_Obfuscated(PATH)
+
+if  __name__ =='__main__':
+    main()
