@@ -1,0 +1,5 @@
+Baseline 
+2gram_svm,,Character NGrams|N:2,,Linear SVM,,leave_one_out.csv
+lex_svm,,Lexical Frequencies,,Linear SVM,,leave_one_out.csv
+sortedc_2gram,,Sorted Character NGram|N:2,,Linear SVM,,leave_one_out.csv
+

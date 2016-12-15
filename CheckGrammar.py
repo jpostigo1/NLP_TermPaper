@@ -2,8 +2,7 @@ import os, re, random, shutil, subprocess
 from nltk import sent_tokenize
 import GenerateCSV
 
-# Run this from the NLP_TermPaper dir to get the grammar scores.
-
+# Run this from the root project dir to get the grammar scores.
 
 AUTHORS_DIR = "15auths"
 TEMP_DIR = "tempSentencePairs"
