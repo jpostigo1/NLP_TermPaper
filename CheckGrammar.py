@@ -30,6 +30,7 @@ def writeObfuscated():
         GenerateCSV.Sentence_Split(TEMP_DIR + os.sep + original + os.sep + original + "_original")
         GenerateCSV.Replacement(TEMP_DIR + os.sep + original + os.sep + original + "_original")
         GenerateCSV.Remove_Stopwords(TEMP_DIR + os.sep + original + os.sep + original + "_original")
+        GenerateCSV.Replace_Stopwords(TEMP_DIR + os.sep + original + os.sep + original + "_original")
 
 
 def getAverageParseScore(parser_output):

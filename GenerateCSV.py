@@ -7,9 +7,9 @@ punctuation = ",;.!?"
 
 def Replace_Stopwords(txt_file):
     author = txt_file.split(os.sep)[-2]
-    operators = set('and', 'or', 'not', 'a', 'was', 'i', 'at',
+    operators = set(('and', 'or', 'not', 'a', 'was', 'i', 'at',
                      'or', 'an', 'it', 'who','its', 'am', 'as','he',
-                     'in', 'be')
+                     'in', 'be'))
 
     stops = set(stopwords.words('english')) - operators
     fp = open(txt_file,encoding='utf-8')
@@ -30,7 +30,6 @@ def Replace_Stopwords(txt_file):
                 to_replace = word
                 for l in syn[0].lemmas():
                     if word != l.name():
-                        print(word, l.name())
                         to_replace = l.name()
                         break
                 output += to_replace + " "
@@ -173,8 +172,8 @@ def Sentence_Split(txt_file):
         word_token = nltk.word_tokenize(sent)
         pos = nltk.pos_tag(word_token)
         for word, speech in pos:
-            if speech == 'CC' and len(sent) - count > 4\
-                    and len(sent) - count < 4:
+            if speech == 'CC' and len(sent) - count >= 4\
+                    and count >= 4:
                 new_sent = new_sent[:-1]
                 new_sent += '. '
             else:
@@ -346,7 +345,6 @@ def main():
                 file_to_classify = file_arr[index]
                 author = file_to_classify.split('_')[0].split(',')[0]
                 path_to_file = os.getcwd() + os.sep + "15auths" + os.sep + author + os.sep + file_to_classify.split(os.sep)[-1]
-                #TranslationTour(path_to_file)
                 Replacement(path_to_file)
                 Sentence_Split(path_to_file)
                 Remove_Stopwords(path_to_file)
